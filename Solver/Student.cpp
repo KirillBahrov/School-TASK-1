@@ -1,37 +1,12 @@
 ﻿#include "Student.h"
-#include <string>
-#include <map>
-#include <sstream>
 
-namespace School
+using namespace School;
+std::shared_ptr<Student> School::Student::createStudent(int grade, std::string firstName, std::string secondName, std::string patronymicName)
 {
-    Student(const std::string& name) : name(name) {}
+    return std::make_shared<Student>(Student{ grade,firstName,secondName,patronymicName });
+}
 
-    void Student::addGrade(const std::string& subject, int grade)
-    {
-        grades[subject] = grade;
-    }
-
-    std::string Student::showGrades() const
-    {
-        std::stringstream ss;
-        ss << "Успеваемость ученика " << name << ":\n";
-        for (const auto& grade : grades) 
-        {
-            ss << grade.first << ": " << grade.second << "\n";
-        }
-        return ss.str();
-    }
-
-    bool Student::hasOnlyGoodGrades() const
-    {
-        for (const auto& grade : grades)
-        {
-            if (grade.second == 3) 
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+std::shared_ptr<Class> School::Student::getClass()
+{
+    return studentClass;
 }

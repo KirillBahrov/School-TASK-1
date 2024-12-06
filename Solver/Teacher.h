@@ -1,32 +1,28 @@
 ﻿#pragma once
-#include <vector>
-#include <map>
-#include <string>
+#include <iostream>
+#include "Class.h"
 
-namespace School 
+namespace School
 {
-    class Teacher 
-    {
-    public:
-        std::string name;
-        std::string direction;
-        int maxLessonsPerDay = 6;
-        std::map<std::string, std::vector<std::string>> timetable;
+	class Class;
+	class Teacher final : public std::enable_shared_from_this<Teacher>
+	{
+	private:
+		std::string firstName;
 
-        /**
-        * @brief конструктор учитель 
-        * @param name - имя учителя
-        * @param direction - направление предмета учителя(гум/технарь)
-        */
-        Teacher(const std::string& name, const std::string& direction);
+		std::string secondName;
 
-        /**
-        * @brief функция добавления урока в расписание
-        * @param day - день недели
-        * @param lesson - название урока
-        */
-        void addLesson(const std::string& day, const std::string& lesson);
+		std::string patronymicName;
 
-        std::string showTimetable() const;
-    };
+		std::shared_ptr<Class> teacherClass;
+
+		Teacher(std::string firstName, std::string secondName, std::string patronymicName) :firstName{ firstName }, secondName{ secondName }, patronymicName{ patronymicName } {}
+
+	public:
+
+		std::shared_ptr<Teacher> createTeacher(std::string firstName, std::string secondName, std::string patronymicName);
+
+		std::shared_ptr<Class> getClass();
+	};
+
 }

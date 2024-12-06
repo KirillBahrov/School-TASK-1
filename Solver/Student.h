@@ -1,35 +1,29 @@
 ﻿#pragma once
-#include <string>
-
+#include <iostream>
+#include "Class.h"
 namespace School
 {
-    class Student
-    {
-    public:
-        std::string name; 
-        std::map<std::string, int> grades; 
+	class Class;
+	class Student final :public std::enable_shared_from_this<Student>
+	{
+	private:
+		int grade;
 
-        /**
-        * @brief конструктор ученик
-        * @param name - имя ученика
-        */
-        Student(const std::string& name);
+		std::string firstName;
 
-        /**
-        * @brief функция, добавляющая оценку по предмету
-        * @param subject - предмет
-        * @param grade - оценка
-        */
-        void addGrade(const std::string& subject, int grade);
+		std::string secondName;
 
-        /**
-        * @brief метод, показывающий оценки по предмету
-        */
-        std::string showGrades() const;
-        
-        /**
-        * @brief функция, проверяющая наличие троек
-        */
-        bool hasOnlyGoodGrades() const;
-    };
+		std::string patronymicName;
+
+		std::shared_ptr <Class> studentClass;
+
+		Student(int grade, std::string firstName, std::string secondName, std::string patronymicName) :grade{ grade }, firstName{ firstName }, secondName{ secondName }, patronymicName{ patronymicName } {}
+
+	public:
+		std::shared_ptr<Student> createStudent(int grade, std::string firstName, std::string secondName, std::string patronymicName);
+
+		std::shared_ptr<Class> getClass();
+	};
+
+
 }

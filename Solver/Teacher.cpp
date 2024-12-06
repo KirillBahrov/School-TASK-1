@@ -1,41 +1,13 @@
 ﻿#include "Teacher.h"
-#include <vector>
-#include <map>
-#include <string>
-#include <sstream>
-#include <exception>
 
-namespace School 
+using namespace School;
+
+std::shared_ptr<Teacher> School::Teacher::createTeacher(std::string firstName, std::string secondName, std::string patronymicName)
 {
-        Teacher(const std::string& name, const std::string& direction)
-            : name(name), direction(direction) {}
+    return std::make_shared<Teacher>(Teacher(firstName, secondName, patronymicName));
+}
 
-        void Teacher::addLesson(const std::string& day, const std::string& lesson) 
-        {
-            if (timetable[day].size() < maxLessonsPerDay) 
-            {
-                timetable[day].push_back(lesson);
-            }
-            else 
-            {
-                throw std::out_of_range("Превышение кол-ва уроков");
-            }
-        }
-
-
-        std::string Teacher::showTimetable() const
-        {
-            std::stringstream ss;
-            ss << "Расписание учителя " << name << ":\n";
-            for (const auto& day : timetable) 
-            {
-                ss << day.first << ": ";
-                for (const std::string& lesson : day.second) 
-                {
-                    ss << lesson << " ";
-                }
-                ss << std::endl;
-            }
-            return ss.str();
-        }
+std::shared_ptr<Class> School::Teacher::getClass()
+{
+    return teacherClass;
 }

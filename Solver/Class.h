@@ -1,41 +1,27 @@
 ﻿#pragma once
-#include <string>
+#include <iostream>
+#include <vector>
 #include "Student.h"
 #include "Teacher.h"
-#include <vector>
 
 namespace School
 {
-    class SchoolClass 
-    {
-    public:
-        std::string className; 
-        Teacher classTeacher; 
-        std::vector<Student> students;
+	class Teacher;
+	class Student;
+	class Class final : std::enable_shared_from_this<Class>
+	{
+	private:
 
-        /**
-        * @brief конструктор класс учеников
-        */
-        SchoolClass(const std::string& className, Teacher classTeacher);
+		std::vector<std::shared_ptr<Student>> students;
+		std::shared_ptr<Teacher> teacher;
 
-        /**
-        * @brief метод добавления ученика в класс
-        */
-        void addStudent(const Student& student);
+	public:
 
-        /**
-        * @brief метод, показывающий учеников класса
-        */
-        std::string showStudents() const;
+		std::vector<std::shared_ptr<Student>> getStudents();
 
-        /**
-        * @brief метод, показывающий классного руководителя
-        */
-        std::string showClassTeacher() const;
+		bool addStudent(std::shared_ptr<Student>& student);
 
-        /**
-        * @brief метод, показывающий учеников без троек
-        */
-        std::string showStudentsWithoutThrees() const;
-    };
+		bool addTeacher(std::shared_ptr<Teacher>& teacher);
+	};
+
 }

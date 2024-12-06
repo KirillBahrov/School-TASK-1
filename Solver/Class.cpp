@@ -1,50 +1,21 @@
 ﻿#include "Class.h"
-#include <string>
-#include "Student.h"
-#include "Teacher.h"
-#include <vector>
-#include <sstream>
 
-
-namespace School
+using namespace School;
+std::vector<std::shared_ptr<Student>> School::Class::getStudents()
 {
-        SchoolClass(const std::string& className, School::Teacher classTeacher)
-            : className(className), classTeacher(classTeacher) {}
+    return students;
+}
 
-        void SchoolClass::addStudent(const School::Student& student)
-        {
-            students.push_back(student);
-        }
+bool School::Class::addStudent(std::shared_ptr<Student>& student)
+{
+    students.push_back(student);
+    student.get()->getClass() = shared_from_this();
+    return true;
+}
 
-        std::string SchoolClass::showStudents() const
-        {
-            std::stringstream ss;
-            ss << "Список учеников класса " << className << ":\n";
-            for (const auto& student : students) 
-            {
-                ss << student.name << "\n";
-            }
-            return ss.str();
-        }
-
-        std::string SchoolClass::showClassTeacher() const
-        {
-            std::stringstream ss;
-            ss << "Классный руководитель класса " << className << ": " << classTeacher->name << "\n";
-            return ss.str();
-        }
-
-        std::string SchoolClass::showStudentsWithoutThrees() const
-        {
-            std::stringstream ss;
-            ss << "Ученики класса " << className << " без троек:\n";
-            for (const auto& student : students) 
-            {
-                if (student.hasOnlyGoodGrades()) 
-                {
-                    ss << student.name << "\n";
-                }
-            }
-            return ss.str();
-        }
+bool School::Class::addTeacher(std::shared_ptr<Teacher>& teacher)
+{
+    this->teacher = teacher;
+    teacher.get()->getClass() = shared_from_this();
+    return true;
 }
