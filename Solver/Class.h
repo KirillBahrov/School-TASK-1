@@ -12,16 +12,27 @@ namespace School
 	{
 	private:
 
-		std::vector<std::shared_ptr<Student>> students;
-		std::shared_ptr<Teacher> teacher;
+		std::string className;
+
+		std::vector<Student*> students;
+
+		Teacher* teacher;
+
+		Class(std::string name) :className{ name } {}
 
 	public:
 
-		std::vector<std::shared_ptr<Student>> getStudents();
+		std::shared_ptr<Class> createClass(std::string name);
 
-		bool addStudent(std::shared_ptr<Student>& student);
+		std::vector<Student*> getStudents();
 
-		bool addTeacher(std::shared_ptr<Teacher>& teacher);
+		std::string getClassName()const;
+
+		bool addStudent(std::shared_ptr<Student> student);
+
+		bool addTeacher(std::shared_ptr<Teacher> teacher);
+
+		std::string ToString() const;
 	};
 
 }

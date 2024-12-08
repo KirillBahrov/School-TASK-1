@@ -14,7 +14,7 @@ namespace School
 
 		std::string patronymicName;
 
-		std::shared_ptr<Class> teacherClass;
+		std::weak_ptr<Class> teacherClass;
 
 		Teacher(std::string firstName, std::string secondName, std::string patronymicName) :firstName{ firstName }, secondName{ secondName }, patronymicName{ patronymicName } {}
 
@@ -22,7 +22,9 @@ namespace School
 
 		std::shared_ptr<Teacher> createTeacher(std::string firstName, std::string secondName, std::string patronymicName);
 
-		std::shared_ptr<Class> getClass();
+		std::weak_ptr<Class> getClass();
+
+		std::string ToString() const;
 	};
 
 }

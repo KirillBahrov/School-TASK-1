@@ -15,15 +15,15 @@ namespace School
 
 		std::string patronymicName;
 
-		std::shared_ptr <Class> studentClass;
+		std::weak_ptr <Class> studentClass;
 
 		Student(int grade, std::string firstName, std::string secondName, std::string patronymicName) :grade{ grade }, firstName{ firstName }, secondName{ secondName }, patronymicName{ patronymicName } {}
 
 	public:
 		std::shared_ptr<Student> createStudent(int grade, std::string firstName, std::string secondName, std::string patronymicName);
 
-		std::shared_ptr<Class> getClass();
+		std::weak_ptr<Class>& getClass();
+
+		std::string ToString() const;
 	};
-
-
 }
