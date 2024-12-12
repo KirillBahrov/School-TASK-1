@@ -1,6 +1,8 @@
 ﻿#include "Class.h"
 #include <sstream>
 using namespace School;
+Class::Class(std::string name) :className{ name } {};
+
 std::shared_ptr<Class> School::Class::createClass(std::string name)
 {
     return std::make_shared<Class>(Class{ name });

@@ -1,6 +1,10 @@
 ﻿#include "Timetable.h"
 #include <sstream>
 using namespace School;
+Timetable::Timetable()
+{
+}
+
 std::shared_ptr<Timetable> School::Timetable::createTimetable()
 {
 	return std::make_shared<Timetable>(Timetable());

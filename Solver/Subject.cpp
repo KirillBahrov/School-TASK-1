@@ -1,5 +1,7 @@
 #include "Subject.h"
 using namespace School;
+Subject::Subject(std::string subj) :subject{ subj } {}
+
 std::shared_ptr<Subject> School::Subject::createSubject(std::string subj)
 {
 	return std::make_shared<Subject>(Subject{ subj });

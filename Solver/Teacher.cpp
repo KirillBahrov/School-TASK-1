@@ -1,6 +1,7 @@
 ﻿#include "Teacher.h"
 #include <sstream>
 using namespace School;
+Teacher::Teacher(std::string firstName, std::string secondName, std::string patronymicName) :firstName{ firstName }, secondName{ secondName }, patronymicName{ patronymicName } {}
 
 std::shared_ptr<Teacher> School::Teacher::createTeacher(std::string firstName, std::string secondName, std::string patronymicName)
 {
