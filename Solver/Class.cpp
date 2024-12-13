@@ -41,7 +41,7 @@ bool School::Class::addTimeTable(std::shared_ptr<Timetable> time)
 std::string School::Class::ToString() const
 {
     std::stringstream buffer{};
-    buffer << className << " " << teacher.lock()->ToString();
+    buffer << className;
     for (auto& temp : students)
     {
         buffer << " " << temp->ToString();

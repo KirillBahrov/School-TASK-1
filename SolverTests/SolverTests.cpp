@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "CppUnitTest.h"
 #include "..\Solver\Subject.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
