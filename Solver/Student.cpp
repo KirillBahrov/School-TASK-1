@@ -9,9 +9,14 @@ std::shared_ptr<Student> School::Student::createStudent(int grade, std::string f
     return std::make_shared<Student>(Student{ grade,firstName,secondName,patronymicName });
 }
 
-std::weak_ptr<Class>& School::Student::getClass()
+std::shared_ptr<Class>& School::Student::getClass()
 {
     return studentClass;
+}
+
+int School::Student::getGrade()
+{
+    return grade;
 }
 
 std::string School::Student::ToString() const

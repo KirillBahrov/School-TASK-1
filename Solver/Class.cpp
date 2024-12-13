@@ -26,15 +26,22 @@ bool School::Class::addStudent(std::shared_ptr<Student> student)
 
 bool School::Class::addTeacher(std::shared_ptr<Teacher> teacher)
 {
-    this->teacher = teacher.get();
+    this->teacher = teacher;
     teacher.get()->getClass() = shared_from_this();
+    return true;
+}
+
+bool School::Class::addTimeTable(std::shared_ptr<Timetable> time)
+{
+    timetable = time.get();
+    time->getClass().push_back(shared_from_this().get());
     return true;
 }
 
 std::string School::Class::ToString() const
 {
     std::stringstream buffer{};
-    buffer << className << " " << teacher->ToString();
+    buffer << className << " " << teacher.lock()->ToString();
     for (auto& temp : students)
     {
         buffer << " " << temp->ToString();

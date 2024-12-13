@@ -14,7 +14,7 @@ namespace School
 
 		std::string patronymicName;
 
-		std::weak_ptr<Class> teacherClass;
+		std::shared_ptr<Class> teacherClass;
 
 		/**
 		* @brief конструктор учитель
@@ -33,14 +33,14 @@ namespace School
 		* @param patronymicName - отчество учителя
 		* @return возвращает умный указатель на объект
 		*/
-		std::shared_ptr<Teacher> createTeacher(std::string firstName, std::string secondName, std::string patronymicName);
+		static std::shared_ptr<Teacher> createTeacher(std::string firstName, std::string secondName, std::string patronymicName);
 
 		/**
 		* @brief функция для класса учеников
 		* @return возвращает класс учеников
 		*/
-		std::weak_ptr<Class> getClass();
-
+		std::shared_ptr<Class> getClass();
+		const std::shared_ptr<Class>& getClass() const noexcept;
 		/**
 		* @brief функция, сериализующая ответы в строку
 		* @return возвращает строку

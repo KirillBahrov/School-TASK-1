@@ -8,7 +8,12 @@ std::shared_ptr<Teacher> School::Teacher::createTeacher(std::string firstName, s
     return std::make_shared<Teacher>(Teacher(firstName, secondName, patronymicName));
 }
 
-std::weak_ptr<Class> School::Teacher::getClass()
+std::shared_ptr<Class> School::Teacher::getClass()
+{
+    return teacherClass;
+}
+
+const std::shared_ptr<Class>& School::Teacher::getClass() const noexcept
 {
     return teacherClass;
 }

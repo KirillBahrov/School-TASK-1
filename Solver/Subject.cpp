@@ -11,6 +11,11 @@ std::string School::Subject::getSubject()
 	return subject;
 }
 
+std::weak_ptr<Timetable> School::Subject::getTimetable()
+{
+	return timetable;
+}
+
 std::string School::Subject::ToString() const
 {
 	return subject;

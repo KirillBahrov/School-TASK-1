@@ -3,11 +3,12 @@
 #include <vector>
 #include "Student.h"
 #include "Teacher.h"
-
+#include "Timetable.h"
 namespace School
 {
 	class Teacher;
 	class Student;
+	class Timetable;
 	class Class final : std::enable_shared_from_this<Class>
 	{
 	private:
@@ -15,8 +16,9 @@ namespace School
 
 		std::vector<Student*> students;
 
-		Teacher* teacher;
+		std::weak_ptr<Teacher> teacher;
 
+		Timetable* timetable;
 		/**
 		* @brief конструктор класс
 		* @param name - имя класса
@@ -30,7 +32,7 @@ namespace School
 		* @param name - имя класса
 		* @return умный указатель на созданный класс
 		*/
-		std::shared_ptr<Class> createClass(std::string name);
+		static std::shared_ptr<Class> createClass(std::string name);
 
 		/**
 		* @brief функция, работающая с массивом учеников
@@ -57,6 +59,13 @@ namespace School
 		* @return true, если добавление произведено успешно
 		*/
 		bool addTeacher(std::shared_ptr<Teacher> teacher);
+
+		/**
+		* @brief функция, добавляющая расписание
+		* @param time - расписание
+		* @return true, если добавление произведено успешно
+		*/
+		bool addTimeTable(std::shared_ptr<Timetable> time);
 
 		/**
 		* @brief функция, сериализующая ответы в строку
